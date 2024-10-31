@@ -16,7 +16,7 @@ export const Layout = ({ children }: LayoutProps) => {
       {/* Main content */}
       <div
         className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${
-          isSidebarCollapsed ? 'md:pl-12' : 'md:pl-32'
+          isSidebarCollapsed ? 'md:pl-12' : 'md:pl-64'
         }`} // Ajusta o padding esquerdo com base no estado da sidebar
       >
         <main className="flex-1 p-6">{children}</main>

@@ -1,5 +1,8 @@
-import AddProductModal from '@/components/ProductModal';
-import React, { Fragment, useState } from 'react';
+import AddProductModal, { FormData } from '@/components/ProductModal';
+import axios from 'axios';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 
 const products = [
   { name: 'Cherry Delight', id: '#KP287400', price: '$90.50', stock: '350 pcs', type: 'Dessert', status: 'Pending' },
@@ -32,16 +35,10 @@ const products = [
 
 const getStatusStyle = (status: string) => {
   switch (status) {
-    case 'Pending':
-      return 'bg-yellow-200 text-yellow-700';
-    case 'Active':
+    case '1':
       return 'bg-green-200 text-green-700';
-    case 'Inactive':
+    case '2':
       return 'bg-red-200 text-red-700';
-    case 'On Sale':
-      return 'bg-blue-200 text-blue-700';
-    case 'Bouncing':
-      return 'bg-purple-200 text-purple-700';
     default:
       return '';
   }
@@ -57,6 +54,21 @@ export default function Home() {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const { data: clients, isLoading: clientsLoading } = useQuery({
+    queryKey: ["list-users"],
+    queryFn: async () => {
+      const { data } = await axios.get('http://127.0.0.7:8091/restapi/clientes/listar', {
+        headers: {
+          Authorization: 'Basic YWRtaW46IA==',
+        },
+      });
+
+      return data.items as FormData[]
+    },
+  })
+
+  console.log(clients)
 
   return (
     <Fragment>
@@ -77,27 +89,48 @@ export default function Home() {
             <thead className="bg-gray-100">
               <tr>
                 <th className="py-2 px-4 text-left">Product Name</th>
+                <th className="py-2 px-4 text-left">Product Name</th>
+                <th className="py-2 px-4 text-left">Product Name</th>
+                <th className="py-2 px-4 text-left">Product Name</th>
                 <th className="py-2 px-4 text-left">Product ID</th>
                 <th className="py-2 px-4 text-left">Price</th>
                 <th className="py-2 px-4 text-left">Stock</th>
                 <th className="py-2 px-4 text-left">Type</th>
                 <th className="py-2 px-4 text-left">Status</th>
                 <th className="py-2 px-4 text-left">Actions</th>
+                <th className="py-2 px-4 text-left">Actions</th>
+                <th className="py-2 px-4 text-left">Actions</th>
+                <th className="py-2 px-4 text-left">Actions</th>
+                <th className="py-2 px-4 text-left">Actions</th>
+                <th className="py-2 px-4 text-left">Actions</th>
+                <th className="py-2 px-4 text-left">Actions</th>
+                <th className="py-2 px-4 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {displayedProducts.map((product, index) => (
+              {clients?.map((client, index) => (
                 <tr key={index} className="border-b">
-                  <td className="py-3 px-4">{product.name}</td>
-                  <td className="py-3 px-4">{product.id}</td>
-                  <td className="py-3 px-4">{product.price}</td>
-                  <td className="py-3 px-4">{product.stock}</td>
-                  <td className="py-3 px-4">{product.type}</td>
+                  <td className="py-3 px-4">{client.codigo}</td>
+                  <td className="py-3 px-4">{client.bairro}</td>
+                  <td className="py-3 px-4">{client.cep}</td>
+                  <td className="py-3 px-4">{client.cidade}</td>
+                  <td className="py-3 px-4">{client.cnpj}</td>
+                  <td className="py-3 px-4">{client.contato}</td>
+                  <td className="py-3 px-4">{client.ddd}</td>
+                  <td className="py-3 px-4">{client.email}</td>
+                  <td className="py-3 px-4">{client.endereco}</td>
+                  <td className="py-3 px-4">{client.estado}</td>
+                  <td className="py-3 px-4">{client.loja}</td>
+                  <td className="py-3 px-4">{client.nome}</td>
+                  <td className="py-3 px-4">{client.pais}</td>
+                  <td className="py-3 px-4">{client.pessoa}</td>
+                  <td className="py-3 px-4">{client.telefone}</td>
+                  <td className="py-3 px-4">{client.tipo}</td>
                   <td className="py-3 px-4">
                     <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusStyle(product.status)}`}
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusStyle(client.status)}`}
                     >
-                      {product.status}
+                      {client.status}
                     </span>
                   </td>
                   <td className="py-3 px-4">

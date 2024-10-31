@@ -424,6 +424,7 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 	Local aDados as array
 	Local aCampos as array
 	Local aTiposValidos as array
+	Local aStatusValidos as array
 
     // CAMPOS EXTRAS
     Local cDdd as character
@@ -437,6 +438,7 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 
 	Private lMsErroAuto as logical
 	aTiposValidos := {"F", "L", "R", "S", "X"}
+	aStatusValidos:={"1","2"}
 
 	cCodigo   := fwNoAccent(decodeUTF8(jCliente['codigo'],'cp1252'))
 	cLoja     := fwNoAccent(decodeUTF8(jCliente['loja'],'cp1252'))
@@ -445,7 +447,7 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 	cEnd      := fwNoAccent(decodeUTF8(jCliente['endereco'],'cp1252'))
 	cCep      := fwNoAccent(decodeUTF8(jCliente['cep'],'cp1252'))
 	cBairro   := fwNoAccent(decodeUTF8(jCliente['bairro'],'cp1252'))
-	cCidade   := fwNoAccent(decodeUTF8(jCliente['cidade'],'cp1252'))
+	cCidade   := UPPER(fwNoAccent(decodeUTF8(jCliente['cidade'],'cp1252')))
 	cEstado   := fwNoAccent(decodeUTF8(jCliente['estado'],'cp1252'))
 	cCnpj     := fwNoAccent(decodeUTF8(jCliente['cnpj'],'cp1252'))
 	lStatus   := jCliente['status']
@@ -494,7 +496,7 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 
 		cNReduz := SA1->A1_NREDUZ
 
-	EndIf
+	EndIf  
 
 	AAdd(aDados,{'A1_NOME'      ,cNome          ,})
 	AAdd(aDados,{'A1_NREDUZ'    ,cNReduz        ,})
@@ -509,14 +511,24 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
     //CAMPOS EXTRAS
     AAdd(aDados,{'A1_DDD'       ,cDdd           ,})
     AAdd(aDados,{'A1_TEL'       ,cTelefone      ,})
-    AAdd(aDados,{'A1_EMAIL'       ,cEmail       ,})
-    AAdd(aDados,{'A1_PAIS'       ,cPais         ,})
+   
+
     AAdd(aDados,{'A1_CONTATO'       ,cContato   ,})
 
 	If cEstado <> 'EX'
 		AAdd(aDados,{'A1_COD_MUN',cCodMun        ,})
 	EndIf
 
+	//Validação tamnho campo pais
+	// IF LEN(cPais) > 3
+    //     MsgInfo("O nome não pode ter mais de 3 caracteres.", "Validação")
+    //     RETURN .F.
+    // Else
+	// 	 AAdd(aDados,{'A1_PAISDES'       ,cPais         ,})
+	// EndIf
+	
+
+	//Validação do campo tipos
 	If (AScan(aTiposValidos, cTipo) > 0)
 		AAdd(aDados,{'A1_TIPO'      ,cTipo          ,})
 	Else
@@ -524,7 +536,21 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 		Return .F.
 	EndIf
 
-	AAdd(aDados,{'A1_MSBLQL'    ,lStatus        ,})
+	//Validação do campo status
+	If (AScan(aStatusValidos, lStatus) > 0)
+		AAdd(aDados,{'A1_MSBLQL'    ,lStatus        ,})
+	Else
+		cMsgLog := "Status inválido use 1 ou 2: " + lStatus
+		Return .F.
+	EndIf
+	
+	//Validação do campo email
+	If IsEmail(cEmail)
+		AAdd(aDados,{'A1_EMAIL'       ,cEmail       ,})
+	Else
+		cMsgLog := "O email informado é invalido "+ cEmail 
+		Return .F.
+	EndIf
 
 	If nOpc == 4
 
@@ -559,3 +585,16 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 	EndIf
 
 Return .T.
+
+
+// FUNCTION ValidarLength(cNomeTabela, nMaxLength, cValor)
+//     LOCAL cMensagem
+
+//     // Verifica se o comprimento da variável excede o máximo permitido
+//     IF LEN(cValor) > nMaxLength
+//         cMensagem := "O campo '" + cNomeTabela + "' não pode ter mais de " + STR(nMaxLength) + " caracteres."
+//         MsgInfo(cMensagem, "Validação")
+//         RETURN .F.  // Retorna falso se a validação falhar
+//     ENDIF
+
+//     RETURN .T. 

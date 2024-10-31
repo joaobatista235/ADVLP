@@ -11,10 +11,7 @@ export const Sidebar = ({ onCollapseChange }: SidebarProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false); // Estado para controlar o recolhimento da sidebar
 
   const navigation = [
-    { name: 'Dashboard', href: '#', icon: Menu, current: true },
-    { name: 'Settings', href: '#', icon: Menu, current: false },
-    { name: 'Profile', href: '#', icon: Menu, current: false },
-    { name: 'Sign out', href: '#', icon: Menu, current: false },
+    { name: 'Dashboard', href: '#', icon: Menu, current: true }
   ];
 
     // Função para alternar a expansão/recolhimento e notificar o Layout
@@ -91,7 +88,7 @@ export const Sidebar = ({ onCollapseChange }: SidebarProps) => {
       </Transition.Root>
 
       {/* Desktop Sidebar */}
-      <div className={`hidden md:flex md:w-${isCollapsed ? '20' : '64'} md:flex-col md:fixed md:inset-y-0 transition-all duration-300 ease-in-out`}>
+      <div className={`hidden md:flex ${isCollapsed ? 'md:w-20' : ' md:w-64'} md:flex-col md:fixed md:inset-y-0 transition-all duration-300 ease-in-out`}>
         <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
           <div className="flex items-center justify-between px-4 py-4">
             {/* Botão para recolher ou expandir a Sidebar */}

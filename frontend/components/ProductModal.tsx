@@ -10,34 +10,68 @@ import { useMutation } from 'react-query';
 
 // Schema de validação usando Zod
 const schema = z.object({
-  codigo: z.string().min(3, "Código é obrigatório"),
-  loja: z.string().min(3, "Loja é obrigatória"),
-  status: z.string().min(3, "Status é obrigatório"),
-  nome: z.string().min(3, "Nome é obrigatório"),
-  pessoa: z.string().min(3, "Pessoa é obrigatória"),
+  codigo: z.string().min(1, "Código é obrigatório"),
+  loja: z.string().min(1, "Loja é obrigatória"),
+  nome: z.string().min(1, "Nome é obrigatório"),
+  pessoa: z.string().min(1, "Pessoa é obrigatória"),
   endereco: z.string().optional(),
   cep: z.string().min(8, "CEP é obrigatório").length(8, "CEP deve ter 8 dígitos"),
-  bairro: z.string().optional(),
+  bairro: z.string().optional(), 
   cidade: z.string().optional(),
-  estado: z.string().optional(),
+  estado: z.string().min(2, "Estado Obrigatório").max(2),
+  status: z.string().min(1, "Status é obrigatório"),
+  cnpj: z.string().min(11, "Digite um CNPJ ou CPF"),
+  tipo: z.string().min(1, "Selecione um tipo"),
+  ddd: z.string().min(2, "Adicione um DDD"),
+  telefone: z.string().min(1, "Adicione um numero de telefone"),
+  email: z.string().min(1, "Adicione um email"),
+  pais: z.string().min(1, "Digite um pais").max(3),
+  contato: z.string().min(1, "Adicione um contato")
 });
+
+// {
+//   "codigo": "M113",
+//   "loja": "06",
+//   "nome": "Teste primeiro cadastro",
+//   "pessoa": "F",
+//   "endereco": "Rua Alcides Martins Simões",
+//   "cep": "18207080",
+//   "bairro": "Vila Francisca",
+//   "cidade": "Itapetininga",
+//   "estado": "SP",
+//   "status": "2",
+//   "cnpj": "52792657804",
+//   "tipo": "L",
+//   "ddd": "15",
+//   "telefone": "15997119529",
+//   "email": "leotelles01@gmail.com",
+//   "pais": "BRA",
+//   "contato": "Contato aqui"
+// }
 
 interface AddProductModalProps {
   open: boolean;
   handleClose: () => void;
 }
 
-interface FormData {
+export interface FormData {
   codigo: string;
   loja: string;
-  status: string;
+  status: string; // vai ser select aStatusValidos:={"1","2"}
   nome: string;
-  pessoa: string;
+  pessoa: string; // vai ser select (F ou J)
   endereco: string;
   cep: string;
   bairro: string;
   cidade: string;
   estado: string;
+  cnpj: string;
+  tipo: string; // vai ser um select aTiposValidos := {"F", "L", "R", "S", "X"}
+  ddd: string;
+  telefone: string;
+  email: string;
+  pais: string;
+  contato: string;
 }
 
 const AddProductModal = ({ open, handleClose }: AddProductModalProps) => {
@@ -69,6 +103,8 @@ const AddProductModal = ({ open, handleClose }: AddProductModalProps) => {
 
   const { mutate: onSubmit, isLoading } = useMutation({
     mutationFn: async (data: FormData) => {
+      console.log(data, "data")
+
       await axios.post('http://127.0.0.7:8091/restapi/clientes/incluir', data, {
         headers: {
           Authorization: 'Basic YWRtaW46IA==',
@@ -107,7 +143,7 @@ const AddProductModal = ({ open, handleClose }: AddProductModalProps) => {
         transform: 'translate(-50%, -50%)',
         bgcolor: 'background.paper',
         borderRadius: '8px',
-        height: `${showAddressFields ? 'auto' : '350px'}`,
+        height: `${showAddressFields ? 'auto' : '650px'}`,
       }}>
         <div className="modal-content p-4">
           <h2 className="text-xl font-semibold mb-4">Cadastrar Novo Cliente</h2>
@@ -120,6 +156,21 @@ const AddProductModal = ({ open, handleClose }: AddProductModalProps) => {
             <div className='flex gap-3'>
               <TextField disabled={isLoading} {...register('nome')} label="Nome" error={!!errors.nome} helperText={errors.nome?.message} fullWidth />
               <TextField disabled={isLoading} {...register('pessoa')} label="Pessoa" error={!!errors.pessoa} helperText={errors.pessoa?.message} fullWidth />
+            </div>
+            <div className='flex gap-3'>
+              <TextField disabled={isLoading} {...register('cnpj')} label="CNPJ ou CPF" error={!!errors.cnpj} helperText={errors.cnpj?.message} fullWidth />
+              <TextField disabled={isLoading} {...register('tipo')} label="Tipo(select)" error={!!errors.tipo} helperText={errors.tipo?.message} fullWidth />
+            </div>
+            <div className='flex gap-3'>
+              <TextField disabled={isLoading} {...register('ddd')} label="DDD" error={!!errors.ddd} helperText={errors.ddd?.message} fullWidth />
+              <TextField disabled={isLoading} {...register('telefone')} label="Telefone" error={!!errors.telefone} helperText={errors.telefone?.message} fullWidth />
+            </div>
+            <div className='flex gap-3'>
+              <TextField disabled={isLoading} {...register('email')} label="Email" error={!!errors.email} helperText={errors.email?.message} fullWidth />
+              <TextField disabled={isLoading} {...register('pais')} label="Pais" error={!!errors.pais} helperText={errors.pais?.message} fullWidth />
+            </div>
+            <div className='flex gap-3'>
+              <TextField disabled={isLoading} {...register('contato')} label="Contato" error={!!errors.contato} helperText={errors.contato?.message} fullWidth />
             </div>
 
             <TextField disabled={isLoading}

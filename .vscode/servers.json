@@ -1,6 +1,8 @@
 {
 	"version": "0.2.2",
 	"includes": [
+		"C:\\Totvs\\TOTVS_P1212310\\Protheus\\include",
+		"C:\\Totvs\\TOTVS_P1212310\\Protheus\\include",
 		"C:\\Totvs\\TOTVS_P1212310\\Protheus\\include"
 	],
 	"permissions": {
@@ -22,7 +24,7 @@
 		],
 		"username": "admin",
 		"environment": "TOTVS_P1212310_REST",
-		"token": "djM6bm03cjdhZngyYW0yd2l2d2ozNjVqNGEwd2w2azoxOmxvY2FsaG9zdDoxMjkxOjA6Ny4wMC4yMTAzMjRQOjM=:djE6VE9UVlNfUDEyMTIzMTBfUkVTVDphZG1pbjpJcG9QQTNZV3ZkT0NQN2tFQkY4a09SNzg5VXlMcmhlaU50SVYzUjZTWjkwPQ==|djI6MTczMDMzMTg1NTowOjE6MQ==.lc2kUXX57XNx+JOQRkYABR39gXgQutykcNjxWuijMo9rHFDygB3bdCX5w8izIu2qkb7VT6KFnmrMf68/13x2hXCy00wZV8iDhpZAoyYDNJABWaGuNc0jxvPkNpDMxGa8+vDNNgfuyaej6BohdNensuuuv5vBc7TXv8XZ9IlaHQB+gh8RrTqnCJNb4QN8gmhOVQpgqAjk6mYKJ58xFOnWNtSihJlm0mhpCMpeHpSi2CGozQvC+oxq8B9O6G5DuhfsRq6LhW2+0GthYe9QHXMPqAuQhWOdPcxq9GqOY9NgpIGmuT9Gaw6eCA55b6KBAA4qkAd11a6YFixBx2C2PEQnJQ==",
+		"token": "djM6bm03cjdhZngyYW0yd2l2d2ozNjVqNGEwd2w2azoxOmxvY2FsaG9zdDoxMjkxOjA6Ny4wMC4yMTAzMjRQOjM=:djE6VE9UVlNfUDEyMTIzMTBfUkVTVDphZG1pbjpoN0hUN09VVFo0bm16SXRqdHprd29tUXZIRndsS0MyckxJN3FJZWdJblpFPQ==|djI6MTczMDkzODg5MjowOjE6MQ==.NnlOkEIAiKUbRP07m0qCWu/X/Fd77TtD6/NVB57rhyhptYAl7rqoN+mDBoYYeEPIfrnKohTlTVdbEuvZn7TmThorrWoQEz7ATmivfUsfWK54bCfZgQuISySRAVvh8iBCSZ0r1Q7ZbidEgiu73fmD76Rh0UgoN7aU3LHiCrzHU+jCNQyBbtZe2xNccCSk5MyLB4ilrPsddc/sQeQJTaAQ4LL2HOFze/0Fdl4wST/ij6sPH9dDa/UvkFDJOkAD5p2TgYOHmurKYwpvFg4FQ3By7kLXM7Zj0KJ3rPr/WEbnTVIW2CcwMhB0vL1DDhqOu/7y67NSDHHPlSmvKJViQuWiNg==",
 		"informations": {
 			"permissions": [],
 			"errorMessage": "",
@@ -47,7 +49,7 @@
 			],
 			"username": "admin",
 			"environment": "TOTVS_P1212310_REST",
-			"token": "djM6bm03cjdhZngyYW0yd2l2d2ozNjVqNGEwd2w2azoxOmxvY2FsaG9zdDoxMjkxOjA6Ny4wMC4yMTAzMjRQOjM=:djE6VE9UVlNfUDEyMTIzMTBfUkVTVDphZG1pbjpJcG9QQTNZV3ZkT0NQN2tFQkY4a09SNzg5VXlMcmhlaU50SVYzUjZTWjkwPQ==|djI6MTczMDMzMTg1NTowOjE6MQ==.lc2kUXX57XNx+JOQRkYABR39gXgQutykcNjxWuijMo9rHFDygB3bdCX5w8izIu2qkb7VT6KFnmrMf68/13x2hXCy00wZV8iDhpZAoyYDNJABWaGuNc0jxvPkNpDMxGa8+vDNNgfuyaej6BohdNensuuuv5vBc7TXv8XZ9IlaHQB+gh8RrTqnCJNb4QN8gmhOVQpgqAjk6mYKJ58xFOnWNtSihJlm0mhpCMpeHpSi2CGozQvC+oxq8B9O6G5DuhfsRq6LhW2+0GthYe9QHXMPqAuQhWOdPcxq9GqOY9NgpIGmuT9Gaw6eCA55b6KBAA4qkAd11a6YFixBx2C2PEQnJQ==",
+			"token": "djM6bm03cjdhZngyYW0yd2l2d2ozNjVqNGEwd2w2azoxOmxvY2FsaG9zdDoxMjkxOjA6Ny4wMC4yMTAzMjRQOjM=:djE6VE9UVlNfUDEyMTIzMTBfUkVTVDphZG1pbjpoN0hUN09VVFo0bm16SXRqdHprd29tUXZIRndsS0MyckxJN3FJZWdJblpFPQ==|djI6MTczMDkzODg5MjowOjE6MQ==.NnlOkEIAiKUbRP07m0qCWu/X/Fd77TtD6/NVB57rhyhptYAl7rqoN+mDBoYYeEPIfrnKohTlTVdbEuvZn7TmThorrWoQEz7ATmivfUsfWK54bCfZgQuISySRAVvh8iBCSZ0r1Q7ZbidEgiu73fmD76Rh0UgoN7aU3LHiCrzHU+jCNQyBbtZe2xNccCSk5MyLB4ilrPsddc/sQeQJTaAQ4LL2HOFze/0Fdl4wST/ij6sPH9dDa/UvkFDJOkAD5p2TgYOHmurKYwpvFg4FQ3By7kLXM7Zj0KJ3rPr/WEbnTVIW2CcwMhB0vL1DDhqOu/7y67NSDHHPlSmvKJViQuWiNg==",
 			"informations": {
 				"permissions": [],
 				"errorMessage": "",
@@ -61,7 +63,7 @@
 			"nm7r7afx2am2wivwj365j4a0wl6k:TOTVS_P1212310_REST",
 			{
 				"id": "nm7r7afx2am2wivwj365j4a0wl6k",
-				"token": "djM6bm03cjdhZngyYW0yd2l2d2ozNjVqNGEwd2w2azoxOmxvY2FsaG9zdDoxMjkxOjA6Ny4wMC4yMTAzMjRQOjM=:djE6VE9UVlNfUDEyMTIzMTBfUkVTVDphZG1pbjpJcG9QQTNZV3ZkT0NQN2tFQkY4a09SNzg5VXlMcmhlaU50SVYzUjZTWjkwPQ==|djI6MTczMDMzMTg1NTowOjE6MQ==.lc2kUXX57XNx+JOQRkYABR39gXgQutykcNjxWuijMo9rHFDygB3bdCX5w8izIu2qkb7VT6KFnmrMf68/13x2hXCy00wZV8iDhpZAoyYDNJABWaGuNc0jxvPkNpDMxGa8+vDNNgfuyaej6BohdNensuuuv5vBc7TXv8XZ9IlaHQB+gh8RrTqnCJNb4QN8gmhOVQpgqAjk6mYKJ58xFOnWNtSihJlm0mhpCMpeHpSi2CGozQvC+oxq8B9O6G5DuhfsRq6LhW2+0GthYe9QHXMPqAuQhWOdPcxq9GqOY9NgpIGmuT9Gaw6eCA55b6KBAA4qkAd11a6YFixBx2C2PEQnJQ=="
+				"token": "djM6bm03cjdhZngyYW0yd2l2d2ozNjVqNGEwd2w2azoxOmxvY2FsaG9zdDoxMjkxOjA6Ny4wMC4yMTAzMjRQOjM=:djE6VE9UVlNfUDEyMTIzMTBfUkVTVDphZG1pbjpoN0hUN09VVFo0bm16SXRqdHprd29tUXZIRndsS0MyckxJN3FJZWdJblpFPQ==|djI6MTczMDkzODg5MjowOjE6MQ==.NnlOkEIAiKUbRP07m0qCWu/X/Fd77TtD6/NVB57rhyhptYAl7rqoN+mDBoYYeEPIfrnKohTlTVdbEuvZn7TmThorrWoQEz7ATmivfUsfWK54bCfZgQuISySRAVvh8iBCSZ0r1Q7ZbidEgiu73fmD76Rh0UgoN7aU3LHiCrzHU+jCNQyBbtZe2xNccCSk5MyLB4ilrPsddc/sQeQJTaAQ4LL2HOFze/0Fdl4wST/ij6sPH9dDa/UvkFDJOkAD5p2TgYOHmurKYwpvFg4FQ3By7kLXM7Zj0KJ3rPr/WEbnTVIW2CcwMhB0vL1DDhqOu/7y67NSDHHPlSmvKJViQuWiNg=="
 			}
 		]
 	],

@@ -81,9 +81,17 @@ Method listar_clientes() class TAB_CLIENTES
 		oQuery:AddMapFields('status','A1_MSBLQL',.T.,.T.)
 		oQuery:AddMapFields('tipo','A1_TIPO',.T.,.T.)
 
+		oQuery:AddMapFields('ddd','A1_DDD',.T.,.T.)
+		oQuery:AddMapFields('telefone','A1_TEL',.T.,.T.)
+		oQuery:AddMapFields('email','A1_EMAIL',.T.,.T.)
+		oQuery:AddMapFields('pais','A1_PAIS',.T.,.T.)
+		oQuery:AddMapFields('contato','A1_CONTATO',.T.,.T.)
+
 		oQuery:setQuery(cQuery)
 		oQuery:setWhere(cWhere)
 		oQuery:setOrder(cOrder)
+		oQuery:setPageSize(jQueryPar['limit'])
+		oQuery:setPage(jQueryPar['offset'])
 
 		If oQuery:execute()
 			oQuery:fillGetResponse()
@@ -151,8 +159,8 @@ Method lista_cliente() class TAB_CLIENTES
 		cQuery += CRLF +" WHERE #QueryWhere# "
 
 		cWhere += "D_E_L_E_T_ = ' ' "
-		cWhere += "AND A1_COD='" + jQueryPar['codigo'] +"' "
-		cWhere += "AND A1_LOJA='" + jQueryPar['loja'] +"' "
+		cWhere += "AND A1_COD='" + decodeUTF8(jQueryPar['codigo']) +"' "
+		cWhere += "AND A1_LOJA='" + decodeUTF8(jQueryPar['loja']) +"' "
 
 		oQuery:AddMapFields('codigo','A1_COD',.T.,.T.)
 		oQuery:AddMapFields('loja','A1_LOJA',.T.,.T.)
@@ -164,6 +172,11 @@ Method lista_cliente() class TAB_CLIENTES
 		oQuery:AddMapFields('cidade','A1_MUN',.T.,.T.)
 		oQuery:AddMapFields('estado','A1_EST',.T.,.T.)
 		oQuery:AddMapFields('cep','A1_CEP',.T.,.T.)
+		oQuery:AddMapFields('ddd','A1_DDD',.T.,.T.)
+		oQuery:AddMapFields('telefone','A1_TEL',.T.,.T.)
+		oQuery:AddMapFields('email','A1_EMAIL',.T.,.T.)
+		oQuery:AddMapFields('pais','A1_PAIS',.T.,.T.)
+		oQuery:AddMapFields('contato','A1_CONTATO',.T.,.T.)
 
 		oQuery:setQuery(cQuery)
 		oQuery:setWhere(cWhere)
@@ -342,10 +355,10 @@ Method deletar_cliente() class TAB_CLIENTES
 		jQueryParams                := oRest:getQueryRequest()
 		jHeaderReq                  := oRest:getHeaderRequest()
 
-		cCodigo                     := jQueryParams['codigo']
-		cLoja                       := jQueryParams['loja'  ]
+		cCodigo                     := decodeUTF8(jQueryParams['codigo'])
+		cLoja                       := decodeUTF8(jQueryParams['loja'  ])
 
-		SA1->(dbSetOrder(1),dbSeek(xFilial(alias())+cCodigo+cLoja))
+		SA1->(dbSetOrder(1),dbSeek(xFilial(alias())+PadR(cCodigo,6)+PadR(cLoja,2)))
 
 		If SA1->(Found())
 
@@ -379,7 +392,7 @@ Method deletar_cliente() class TAB_CLIENTES
 		Else
 
 			err := errorClass():new()
-			err:description := 'Fornecedor não encontrado.'
+			err:description := 'Cliente não encontrado.'
 
 			throw err
 
@@ -489,8 +502,7 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 
 	ElseIf nOpc == 4
 
-		SA1->(dbSetOrder(1),dbSeek(xFilial(alias())+cCodigo+cLoja))
-
+		SA1->(dbSetOrder(1),dbSeek(xFilial(alias())+PadR(cCodigo,6)+PadR(cLoja,2)))
 		AAdd(aDados,{'A1_COD'   ,SA1->A1_COD    ,})
 		AAdd(aDados,{'A1_LOJA'  ,SA1->A1_LOJA   ,})
 
@@ -519,14 +531,7 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 		AAdd(aDados,{'A1_COD_MUN',cCodMun        ,})
 	EndIf
 
-	//Validação tamnho campo pais
-	// IF LEN(cPais) > 3
-    //     MsgInfo("O nome não pode ter mais de 3 caracteres.", "Validação")
-    //     RETURN .F.
-    // Else
-	// 	 AAdd(aDados,{'A1_PAISDES'       ,cPais         ,})
-	// EndIf
-	
+	AAdd(aDados,{'A1_PAIS'       ,cPais         ,})
 
 	//Validação do campo tipos
 	If (AScan(aTiposValidos, cTipo) > 0)
@@ -585,16 +590,3 @@ Static Function grava_cliente(jCliente as json, cMsgLog as character) as logical
 	EndIf
 
 Return .T.
-
-
-// FUNCTION ValidarLength(cNomeTabela, nMaxLength, cValor)
-//     LOCAL cMensagem
-
-//     // Verifica se o comprimento da variável excede o máximo permitido
-//     IF LEN(cValor) > nMaxLength
-//         cMensagem := "O campo '" + cNomeTabela + "' não pode ter mais de " + STR(nMaxLength) + " caracteres."
-//         MsgInfo(cMensagem, "Validação")
-//         RETURN .F.  // Retorna falso se a validação falhar
-//     ENDIF
-
-//     RETURN .T. 

@@ -1,5 +1,5 @@
 {
-    "totvsLanguageServer.editor.linter.includes": "C:\\Totvs\\TOTVS_P1212310\\Protheus\\include",
+    "totvsLanguageServer.editor.linter.includes": "C:\\Totvs\\TOTVS_P1212310\\Protheus\\include;C:\\Totvs\\TOTVS_P1212310\\Protheus\\include;C:\\Totvs\\TOTVS_P1212310\\Protheus\\include",
     "totvsLanguageServer.welcomePage": false,
     "totvsLanguageServer.workspaceServerConfig": true
 }

@@ -146,54 +146,19 @@ Todos os métodos devem capturar exceções e retornar mensagens de erro apropri
     "error": "Descrição do erro aqui"
   }
   ```
-
-```html
-@startuml actor "Usuário" as Usuario actor "Administrador" as Admin usecase
-"Listar Clientes" as UC1 usecase "Obter Informações do Cliente" as UC2 usecase
-"Incluir Cliente" as UC3 usecase "Atualizar Cliente" as UC4 usecase "Deletar
-Cliente" as UC5 Usuario --> UC1 Usuario --> UC2 Usuario --> UC3 Admin --> UC4
-Admin --> UC5 @enduml
-```
-
+  <br>
+ <hr>
 <div align="center">
     <picture>
       <img alt="Diagrama 1" src="/backend/assets/caso_e_uso.svg" height="128">
     </picture>
 </div>
 
-```
-@startuml
-class "TAB_CLIENTES" {
-    + listar_clientes() : logical
-    + lista_cliente() : logical
-    + inclui_cliente() : logical
-    + atualiza_cliente() : logical
-    + deletar_cliente() : logical
-}
 
-class "Cliente" {
-    - codigo : string
-    - loja : string
-    - nome : string
-    - pessoa : string
-    - endereco : string
-    - cep : string
-    - bairro : string
-    - cidade : string
-    - estado : string
-    - data_nasc : string
-    - abertura : string
-    - pais : string
-    - email : string
-    - dt_cadastro : string
-    - DDD : string
-    - contato : string
-}
+ <br>
+ <hr>
 
-TAB_CLIENTES --> Cliente : manipula >
-@enduml
 
-```
 <div align="center">
     <picture>
       <img alt="Diagrama 2" src="/backend/assets/diagrama_de_classes.svg" >

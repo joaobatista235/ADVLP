@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { ChevronLeft, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Users, X } from 'lucide-react';
 
 interface SidebarProps {
   onCollapseChange: (isCollapsed: boolean) => void; // Callback para informar o estado de recolhimento
@@ -11,7 +11,7 @@ export const Sidebar = ({ onCollapseChange }: SidebarProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false); // Estado para controlar o recolhimento da sidebar
 
   const navigation = [
-    { name: 'Dashboard', href: '#', icon: Menu, current: true }
+    { name: 'Clientes', href: '#', icon: Users, current: true }
   ];
 
     // Função para alternar a expansão/recolhimento e notificar o Layout
@@ -135,7 +135,7 @@ export const Sidebar = ({ onCollapseChange }: SidebarProps) => {
           onClick={() => setSidebarOpen(true)}
         >
           <span className="sr-only">Open sidebar</span>
-          <Menu className="h-6 w-6" aria-hidden="true" />
+          <Users className="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
     </>

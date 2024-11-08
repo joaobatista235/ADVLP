@@ -7,8 +7,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
 import schema from '@/validations';
-import ReactInputMask from 'react-input-mask';
-import InputMask from "react-input-mask"
 
 // Interface TypeScript baseada no schema
 export interface FormData {
@@ -68,12 +66,14 @@ const AddProductModal = ({ open, handleClose, user }: AddProductModalProps) => {
   const { mutate: onSubmit, isLoading } = useMutation({
     mutationFn: async (data: FormData) => {
       console.log(data, "data");
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
       await axios.post('http://127.0.0.7:8091/restapi/clientes/incluir', data, {
         headers: {
           Authorization: 'Basic YWRtaW46IA==',
         },
       });
+
     },
     onError: () => {
       toast.error("Erro ao cadastrar cliente!", {
@@ -387,7 +387,7 @@ const AddProductModal = ({ open, handleClose, user }: AddProductModalProps) => {
               type="submit"
               variant="contained"
               className="mt-4 w-full"
-              disabled={isLoading || !isDirty || !isValid || editLoading || deleteLoading}
+              //disabled={isLoading || !isDirty || !isValid || editLoading || deleteLoading}
             >
               {user ? "Editar" : "Cadastrar"}
             </Button>

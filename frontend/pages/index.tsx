@@ -100,8 +100,10 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {clients?.map((client, index) => (
+            {clients && clients.length > 0 ? (
+              clients.map((client, index) => (
                 <tr key={index} className="border-b">
+                  <tr key={index} className="border-b">
                   <td className="py-3 px-4">{client.codigo}</td>
                   <td className="py-3 px-4">{client.bairro}</td>
                   <td className="py-3 px-4">{client.cep}</td>
@@ -132,7 +134,13 @@ export default function Home() {
                     }}>view</button>
                   </td>
                 </tr>
-              ))}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={17} className="py-3 px-4 text-center">Nenhum cliente encontrado.</td>
+              </tr>
+            )}
             </tbody>
           </table>
         </div>

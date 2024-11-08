@@ -12,14 +12,14 @@ const isCPF = (cpf: string) => {
 };
 
 const schema = z.object({
-  codigo: z.string().min(3, "Código é obrigatório"),
-  loja: z.string().min(3, "Loja é obrigatória"),
-  nome: z.string().min(3, "Nome é obrigatório"),
+  codigo: z.string().min(1, "Código é obrigatório").max(6, "Quantidade de caracteres excedida"),
+  loja: z.string().min(1, "Loja é obrigatória").max(2),
+  nome: z.string().min(3, "Nome é obrigatório").max(40),
   pessoa: z.string().min(1, "Pessoa é obrigatória")
     .refine(val => val === 'F' || val === 'J', { message: "Pessoa deve ser F (Física) ou J (Jurídica)" }),
-  endereco: z.string().optional(),
-  cep: z.string().min(8, "CEP é obrigatório").length(8, "CEP deve ter 8 dígitos"),
-  bairro: z.string().optional(),
+  endereco: z.string().min(0).max(80),
+  cep: z.string().min(8, "CEP é obrigatório").max(8).length(8, "CEP deve ter 8 dígitos"),
+  bairro: z.string().min(0).max(40),
   cidade: z.string().optional(),
   estado: z.string().min(2, "Estado Obrigatório").max(2),
   status: z.string().min(1, "Status é obrigatório")
